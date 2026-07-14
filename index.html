@@ -13,7 +13,7 @@
     <header tabindex="0" class="header-props">
         <div class="header-center">
             <div tabindex="0" class="logo-div">
-                <img class="users-logo" src="./assests/images/threeUsers.svg" alt="group of users logo">
+                <img class="users-logo" src="./assests/images/threeUsers.svg" alt="teams logo">
             </div>
             <div>
                 <h1 tabindex="0">Our Team</h1>
@@ -32,9 +32,13 @@
                     <h1 tabindex="0" class="person-name">Rahul Sharma</h1>
                     <h2 tabindex="0" class="person-tag">Founder & CEO</h2>
                 </div>
+                <div class="desc-wrapper">
+                    
+                    <p tabindex="0" class="person-bio"></p>
+                    <!-- <button tabindex="0" id="toggle">Read more</button> -->
+                    
+                </div>
                 
-                <p tabindex="0" class="person-bio">Visionary leader with 10+ years of experience in building and scaling successfull
-                    products</p>
                 <div class="socials-container">
                     <a href="#" class="socials-outer">
                         <img src="./assests/images/linkedin.svg" alt="linkedin logo">
@@ -258,6 +262,46 @@
 
         </div>
     </main>
+
+    <script>
+        // const btn = document.getElementById("toggle");
+        const p = document.querySelector(".person-bio");
+        // btn.addEventListener('click', () => {
+        //     desc.classList.toggle("expanded");
+        //     btn.textContent = desc.classList.contains("expanded") ? "Read Less": "Read more";
+
+        // })
+        const fullText = `Visionary leader with 10+ years of experience in building and scaling successfull
+                    products and services in the AI space and the other technical departments`;
+        
+        const maxi = 35;
+        const words = fullText.split(" ");
+        let currText = "";
+        for (const word of words) {
+            currText += word + " ";
+            p.innerHTML =  `${currText}<span>...</span><a href="#" class="more">Read more</a>`;
+
+            if(p.scrollHeight > maxi) {
+                console.log("hello")
+                currText = currText.trimEnd();
+                const arr = currText.split(" ");
+                arr.pop();
+                console.log(p.textContent)
+                break;
+            }
+        }
+
+        const btn = document.querySelector('.more');
+
+        btn.addEventListener('click', () => {
+            p.classList.toggle("expanded");
+            p.textContent = fullText;
+            btn.textContent = desc.classList.contains("expanded")
+                ? "Read Less"
+                : "Read More";
+        })
+
+    </script>
 </body>
 
 </html>
